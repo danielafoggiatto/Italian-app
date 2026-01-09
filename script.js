@@ -1042,20 +1042,22 @@ function speakNextChunk() {
 }
 
 function togglePauseReading() {
-    if (!state.reading.isPlaying) return;
+      if (!state.reading.isPlaying) return;
 
-    if (state.reading.isPaused) {
-        speechSynthesis.resume();
-        state.reading.isPaused = false;
-        elements.btnReadingPause.textContent = '⏸️ Pausar';
-        setReadingStatus('🔊 Continuando leitura...');
-    } else {
-        speechSynthesis.pause();
-        state.reading.isPaused = true;
-        elements.btnReadingPause.textContent = '▶️ Continuar';
-        setReadingStatus('⏸️ Leitura pausada.');
-    }
-}
+      if (state.reading.isPaused) {
+          // Retomar - reiniciar a partir do chunk atual (resume() não funciona bem)
+          state.reading.isPaused = false;
+          elements.btnReadingPause.textContent = '⏸️ Pausar';
+          setReadingStatus('🔊 Continuando leitura...');
+          speakNextChunk();
+      } else {
+          // Pausar - cancelar e marcar como pausado
+          speechSynthesis.cancel();
+          state.reading.isPaused = true;
+          elements.btnReadingPause.textContent = '▶️ Continuar';
+          setReadingStatus('⏸️ Leitura pausada.');
+      }
+  }
 
 function updateReadingSpeed() {
     state.reading.speed = parseFloat(elements.readingSpeedSlider.value);
