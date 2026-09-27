@@ -118,7 +118,7 @@ const elements = {
 function init() {
     // Verificar suporte à Web Speech API
     if (!('speechSynthesis' in window)) {
-        alert('Seu navegador não suporta síntese de voz. Tente Chrome ou Edge.');
+        alert('Il tuo browser non supporta la sintesi vocale. Prova Chrome o Edge.');
         return;
     }
 
@@ -232,7 +232,7 @@ function loadRandomPhrase() {
     elements.btnPlay.disabled = false;
     elements.btnShow.disabled = false;
 
-    setStatus('Frase carregada! Clique em Ouvir.');
+    setStatus('Frase caricata! Tocca Ascolta.');
 }
 
 function showItalian() {
@@ -251,30 +251,19 @@ async function playPhrase() {
 
     try {
         // Destaca o português (apenas texto, sem falar)
-        setStatus('🇧🇷 Leia o português...');
+        setStatus('🇧🇷 Leggi il portoghese...');
         elements.phrasePt.classList.add('highlight');
-        await delay(1500);
         elements.phrasePt.classList.remove('highlight');
-
-        await delay(500);
-
         showItalian();
-        setStatus('🇮🇹 Falando italiano (1/2)...');
+        setStatus('🇮🇹 Riproduzione in italiano...');
         elements.phraseIt.classList.add('highlight');
         await speak(state.currentPhrase.it, 'it-IT');
         elements.phraseIt.classList.remove('highlight');
 
-        await delay(1000);
-
-        setStatus('🇮🇹 Falando italiano (2/2)...');
-        elements.phraseIt.classList.add('highlight');
-        await speak(state.currentPhrase.it, 'it-IT');
-        elements.phraseIt.classList.remove('highlight');
-
-        setStatus('✅ Concluído! Clique em Nova Frase.');
+        setStatus('✅ Completato! Tocca Nuova frase.');
     } catch (error) {
         console.error('Erro na síntese de voz:', error);
-        setStatus('❌ Erro ao falar. Tente novamente.');
+        setStatus('❌ Errore di riproduzione. Riprova.');
     } finally {
         state.isPlaying = false;
         elements.btnPlay.disabled = false;
@@ -293,7 +282,7 @@ function startQuiz() {
     updateQuizScore();
 
     loadQuizQuestion();
-    elements.btnStartQuiz.textContent = '🔄 Reiniciar Quiz';
+    elements.btnStartQuiz.textContent = '🔄 Ricomincia il quiz';
 }
 
 function loadQuizQuestion() {
@@ -317,7 +306,7 @@ function loadQuizQuestion() {
     elements.quizPhrasePt.textContent = state.quiz.currentPhrase.pt;
     elements.quizAnswer.value = '';
     elements.quizAnswer.disabled = false;
-    elements.quizFeedback.textContent = `Questão ${current} de ${frases.length}`;
+    elements.quizFeedback.textContent = `Domanda ${current} di ${frases.length}`;
     elements.quizFeedback.className = 'quiz-feedback';
 
     elements.btnCheck.disabled = false;
@@ -336,12 +325,12 @@ function checkAnswer() {
 
     if (isCorrect) {
         state.quiz.correct++;
-        elements.quizFeedback.textContent = '🎉 Correto! Excelente!';
+        elements.quizFeedback.textContent = '🎉 Corretto! Ottimo!';
         elements.quizFeedback.className = 'quiz-feedback correct';
         speak(state.quiz.currentPhrase.it, 'it-IT');
     } else {
         state.quiz.wrong++;
-        elements.quizFeedback.innerHTML = `❌ Incorreto!<br>Resposta: <strong>${state.quiz.currentPhrase.it}</strong>`;
+        elements.quizFeedback.innerHTML = `❌ Errato!<br>Risposta: <strong>${state.quiz.currentPhrase.it}</strong>`;
         elements.quizFeedback.className = 'quiz-feedback wrong';
         setTimeout(() => speak(state.quiz.currentPhrase.it, 'it-IT'), 500);
     }
@@ -363,7 +352,7 @@ function showHint() {
         return word[0] + '_'.repeat(word.length - 1);
     }).join(' ');
 
-    elements.quizFeedback.textContent = `💡 Dica: ${hint}`;
+    elements.quizFeedback.textContent = `💡 Suggerimento: ${hint}`;
     elements.quizFeedback.className = 'quiz-feedback hint';
     state.quiz.hintUsed = true;
 }
@@ -403,8 +392,8 @@ function initSpeechRecognition() {
     state.pronunciation.recognition.onstart = () => {
         state.pronunciation.isListening = true;
         elements.btnPronSpeak.classList.add('recording');
-        elements.btnPronSpeak.textContent = '🔴 Ouvindo...';
-        elements.pronFeedback.textContent = '🎤 Fale agora...';
+        elements.btnPronSpeak.textContent = '🔴 In ascolto...';
+        elements.pronFeedback.textContent = '🎤 Parla ora...';
         elements.pronFeedback.className = 'pronunciation-feedback listening';
     };
 
@@ -424,20 +413,20 @@ function initSpeechRecognition() {
     state.pronunciation.recognition.onend = () => {
         state.pronunciation.isListening = false;
         elements.btnPronSpeak.classList.remove('recording');
-        elements.btnPronSpeak.textContent = '🎤 Falar';
+        elements.btnPronSpeak.textContent = '🎤 Parla';
     };
 
     state.pronunciation.recognition.onerror = (event) => {
         console.error('Erro no reconhecimento:', event.error);
         state.pronunciation.isListening = false;
         elements.btnPronSpeak.classList.remove('recording');
-        elements.btnPronSpeak.textContent = '🎤 Falar';
+        elements.btnPronSpeak.textContent = '🎤 Parla';
 
         if (event.error === 'no-speech') {
-            elements.pronFeedback.textContent = '❌ Não ouvi nada. Tente novamente.';
+            elements.pronFeedback.textContent = '❌ Non ho sentito nulla. Riprova.';
             elements.pronFeedback.className = 'pronunciation-feedback wrong';
         } else if (event.error === 'not-allowed') {
-            elements.pronFeedback.textContent = '❌ Permita o uso do microfone.';
+            elements.pronFeedback.textContent = '❌ Consenti l\'accesso al microfono.';
             elements.pronFeedback.className = 'pronunciation-feedback wrong';
         }
     };
@@ -461,7 +450,7 @@ function loadPronunciationPhrase() {
 
     elements.pronPhrase.textContent = state.pronunciation.currentPhrase.it;
     elements.pronPhrasePt.textContent = state.pronunciation.currentPhrase.pt;
-    elements.pronResult.textContent = 'Sua fala aparecerá aqui...';
+    elements.pronResult.textContent = 'La tua voce apparirà qui...';
     elements.pronFeedback.textContent = '';
     elements.pronFeedback.className = 'pronunciation-feedback';
 
@@ -470,7 +459,7 @@ function loadPronunciationPhrase() {
 
     const remaining = state.pronunciation.availableIndexes.length;
     const total = frases.length;
-    setPronStatus(`Frase carregada! (${total - remaining}/${total}) Ouça e depois tente falar.`);
+    setPronStatus(`Frase caricata! (${total - remaining}/${total}) Ascolta, poi prova a parlare.`);
 }
 
 function listenPronunciationPhrase() {
@@ -484,7 +473,7 @@ function listenPronunciationPhrase() {
 
 function startSpeechRecognition() {
     if (!state.pronunciation.currentPhrase) {
-        setPronStatus('Carregue uma frase primeiro!');
+        setPronStatus('Carica prima una frase!');
         return;
     }
 
@@ -508,20 +497,20 @@ function checkPronunciation(spokenText) {
         state.pronunciation.correct++;
         elements.pronFeedback.innerHTML = `
             <span class="accuracy">${percentage}%</span>
-            <span class="accuracy-label">Excelente pronúncia! 🎉</span>
+            <span class="accuracy-label">Pronuncia eccellente! 🎉</span>
         `;
         elements.pronFeedback.className = 'pronunciation-feedback correct';
     } else if (similarity >= 0.6) {
         elements.pronFeedback.innerHTML = `
             <span class="accuracy">${percentage}%</span>
-            <span class="accuracy-label">Quase lá! Tente novamente.</span>
+            <span class="accuracy-label">Ci sei quasi! Riprova.</span>
         `;
         elements.pronFeedback.className = 'pronunciation-feedback hint';
     } else {
         state.pronunciation.wrong++;
         elements.pronFeedback.innerHTML = `
             <span class="accuracy">${percentage}%</span>
-            <span class="accuracy-label">Continue praticando! 💪</span>
+            <span class="accuracy-label">Continua a esercitarti! 💪</span>
         `;
         elements.pronFeedback.className = 'pronunciation-feedback wrong';
     }
@@ -576,7 +565,7 @@ function onDialogSelect() {
     elements.btnDialogRepeat.disabled = true;
     elements.btnDialogPractice.disabled = false;  // Disponível desde o início
 
-    setDialogStatus('Clique em Iniciar para ouvir ou Praticar para ir direto.');
+    setDialogStatus('Tocca Inizia per ascoltare o Esercitati per passare subito alla pratica.');
 }
 
 async function startDialog() {
@@ -619,7 +608,7 @@ async function startDialog() {
         msgEl.classList.add('active');
 
         // Falar a frase
-        setDialogStatus(`${msg.pessoa === 'A' ? '👤' : '👤'} Pessoa ${msg.pessoa} falando...`);
+        setDialogStatus(`👤 La persona ${msg.pessoa} sta parlando...`);
         await speak(msg.it, 'it-IT');
 
         msgEl.classList.remove('active');
@@ -636,11 +625,11 @@ async function startDialog() {
     state.dialog.isPaused = false;
     elements.btnDialogStart.disabled = false;
     elements.btnDialogPause.disabled = true;
-    elements.btnDialogPause.textContent = '⏸️ Pausar';
+    elements.btnDialogPause.textContent = '⏸️ Pausa';
     elements.btnDialogRepeat.disabled = false;
     elements.btnDialogPractice.disabled = false;
     if (state.dialog.current) {
-        setDialogStatus('✅ Diálogo completo! Pratique as respostas.');
+        setDialogStatus('✅ Dialogo completato! Esercitati con le risposte.');
     }
 }
 
@@ -650,14 +639,14 @@ function togglePauseDialog() {
     if (state.dialog.isPaused) {
         // Retomar
         state.dialog.isPaused = false;
-        elements.btnDialogPause.textContent = '⏸️ Pausar';
-        setDialogStatus('▶️ Retomando...');
+        elements.btnDialogPause.textContent = '⏸️ Pausa';
+        setDialogStatus('▶️ Ripresa...');
     } else {
         // Pausar
         state.dialog.isPaused = true;
         speechSynthesis.cancel();  // Para a fala atual
-        elements.btnDialogPause.textContent = '▶️ Continuar';
-        setDialogStatus('⏸️ Pausado. Clique em Continuar.');
+        elements.btnDialogPause.textContent = '▶️ Riprendi';
+        setDialogStatus('⏸️ In pausa. Tocca Riprendi.');
     }
 }
 
@@ -719,7 +708,7 @@ async function practiceDialog() {
             elements.dialogConversation.scrollTop = elements.dialogConversation.scrollHeight;
 
             msgEl.classList.add('active');
-            setDialogStatus('👤 Pessoa A falando...');
+            setDialogStatus('👤 La persona A sta parlando...');
             await speak(msg.it, 'it-IT');
             msgEl.classList.remove('active');
 
@@ -736,7 +725,7 @@ async function practiceDialog() {
             elements.dialogConversation.scrollTop = elements.dialogConversation.scrollHeight;
 
             msgEl.classList.add('active');
-            setDialogStatus('🎤 Sua vez! Fale a frase destacada...');
+            setDialogStatus('🎤 Tocca a te! Pronuncia la frase evidenziata...');
 
             // Esperar o usuário falar (se não estiver pausado)
             if (state.dialog.isPaused) await waitForResume();
@@ -754,11 +743,11 @@ async function practiceDialog() {
     state.dialog.isPaused = false;
     elements.btnDialogStart.disabled = false;
     elements.btnDialogPause.disabled = true;
-    elements.btnDialogPause.textContent = '⏸️ Pausar';
+    elements.btnDialogPause.textContent = '⏸️ Pausa';
     elements.btnDialogRepeat.disabled = false;
     elements.btnDialogPractice.disabled = false;
     if (state.dialog.current) {
-        setDialogStatus('✅ Prática completa! Excelente trabalho!');
+        setDialogStatus('✅ Esercitazione completata! Ottimo lavoro!');
     }
 }
 
@@ -768,7 +757,7 @@ function waitForUserSpeech(expectedPhrase) {
 
         if (!SpeechRecognition) {
             // Se não tiver suporte, apenas esperar e resolver
-            setDialogStatus('⚠️ Seu navegador não suporta microfone. Pulando...');
+            setDialogStatus('⚠️ Il browser non supporta il microfono. Passo oltre...');
             setTimeout(resolve, 2000);
             return;
         }
@@ -780,7 +769,7 @@ function waitForUserSpeech(expectedPhrase) {
         recognition.interimResults = true;
 
         recognition.onstart = () => {
-            setDialogStatus('🔴 OUVINDO... Fale agora!');
+            setDialogStatus('🔴 IN ASCOLTO... Parla ora!');
         };
 
         recognition.onresult = (event) => {
@@ -789,7 +778,7 @@ function waitForUserSpeech(expectedPhrase) {
                 .join('');
 
             // Mostrar o que está sendo captado em tempo real
-            setDialogStatus(`🎤 Ouvindo: "${transcript}"`);
+            setDialogStatus(`🎤 Ti sto ascoltando: "${transcript}"`);
 
             // Se for resultado final
             if (event.results[0].isFinal) {
@@ -799,9 +788,9 @@ function waitForUserSpeech(expectedPhrase) {
                 );
 
                 if (similarity >= 0.7) {
-                    setDialogStatus(`✅ Molto bene! Você disse: "${transcript}"`);
+                    setDialogStatus(`✅ Molto bene! Hai detto: "${transcript}"`);
                 } else {
-                    setDialogStatus(`👍 Você disse: "${transcript}" - Continue praticando!`);
+                    setDialogStatus(`👍 Hai detto: "${transcript}". Continua a esercitarti!`);
                 }
 
                 resolved = true;
@@ -812,11 +801,11 @@ function waitForUserSpeech(expectedPhrase) {
         recognition.onerror = (event) => {
             if (!resolved) {
                 if (event.error === 'no-speech') {
-                    setDialogStatus('❌ Não ouvi nada. Continuando...');
+                    setDialogStatus('❌ Non ho sentito nulla. Continuo...');
                 } else if (event.error === 'not-allowed') {
-                    setDialogStatus('❌ Permita o microfone no navegador!');
+                    setDialogStatus('❌ Consenti l\'accesso al microfono nel browser!');
                 } else {
-                    setDialogStatus('➡️ Continuando...');
+                    setDialogStatus('➡️ Continuo...');
                 }
                 resolved = true;
                 setTimeout(resolve, 1000);
@@ -826,7 +815,7 @@ function waitForUserSpeech(expectedPhrase) {
         recognition.onend = () => {
             // Se terminou sem resultado, resolver
             if (!resolved) {
-                setDialogStatus('➡️ Continuando...');
+                setDialogStatus('➡️ Continuo...');
                 resolved = true;
                 setTimeout(resolve, 500);
             }
@@ -836,7 +825,7 @@ function waitForUserSpeech(expectedPhrase) {
         setTimeout(() => {
             if (!resolved) {
                 recognition.stop();
-                setDialogStatus('⏱️ Tempo esgotado. Continuando...');
+                setDialogStatus('⏱️ Tempo scaduto. Continuo...');
                 resolved = true;
                 resolve();
             }
@@ -846,7 +835,7 @@ function waitForUserSpeech(expectedPhrase) {
         try {
             recognition.start();
         } catch (e) {
-            setDialogStatus('❌ Erro ao iniciar microfone.');
+            setDialogStatus('❌ Errore nell\'avvio del microfono.');
             resolved = true;
             setTimeout(resolve, 1000);
         }
@@ -870,7 +859,7 @@ function loadRandomText() {
     }
 
     if (availableTexts.length === 0) {
-        setReadingStatus('Nenhum texto disponível para este nível.');
+        setReadingStatus('Nessun testo disponibile per questa categoria.');
         return;
     }
 
@@ -880,7 +869,7 @@ function loadRandomText() {
 
     // Atualizar interface
     elements.readingTitle.textContent = state.reading.currentText.titulo;
-    elements.readingText.textContent = state.reading.currentText.texto;
+    elements.readingText.textContent = state.reading.currentText.testoIt || state.reading.currentText.texto;
 
     // Atualizar badge de nível
     updateLevelBadge(state.reading.currentText.nivel);
@@ -899,16 +888,16 @@ function loadRandomText() {
     }
     // Ocultar tradução ao carregar novo texto
     elements.readingTranslationBox.style.display = 'none';
-    elements.btnReadingTranslation.textContent = '🇧🇷 Tradução';
+    elements.btnReadingTranslation.textContent = '🇧🇷 Traduzione';
 
     // Parar qualquer leitura em andamento
     speechSynthesis.cancel();
     state.reading.isPlaying = false;
     state.reading.isPaused = false;
-    elements.btnReadingPlay.textContent = '▶️ Ouvir Texto';
+    elements.btnReadingPlay.textContent = '▶️ Ascolta il testo';
 
-    const hasTranslation = state.reading.currentText.traducao ? ' (tem tradução!)' : '';
-    setReadingStatus('Texto carregado!' + hasTranslation + ' Clique em "Ouvir Texto" para começar.');
+    const hasTranslation = state.reading.currentText.traducao ? ' (traduzione disponibile!)' : '';
+    setReadingStatus('Testo caricato!' + hasTranslation + ' Tocca "Ascolta il testo" per iniziare.');
 }
 
 function updateLevelBadge(nivel) {
@@ -924,7 +913,7 @@ function updateLevelBadge(nivel) {
 
 function playReadingText() {
     if (!state.reading.currentText) {
-        setReadingStatus('Carregue um texto primeiro!');
+        setReadingStatus('Carica prima un testo!');
         return;
     }
 
@@ -932,9 +921,9 @@ function playReadingText() {
     if (state.reading.isPaused) {
         speechSynthesis.resume();
         state.reading.isPaused = false;
-        elements.btnReadingPlay.textContent = '▶️ Ouvir Texto';
-        elements.btnReadingPause.textContent = '⏸️ Pausar';
-        setReadingStatus('🔊 Continuando leitura...');
+        elements.btnReadingPlay.textContent = '▶️ Ascolta il testo';
+        elements.btnReadingPause.textContent = '⏸️ Pausa';
+        setReadingStatus('🔊 Ripresa della lettura...');
         return;
     }
 
@@ -945,23 +934,24 @@ function playReadingText() {
         state.reading.isPaused = false;
         state.reading.chunks = [];
         state.reading.currentChunk = 0;
-        elements.btnReadingPlay.textContent = '▶️ Ouvir Texto';
+        elements.btnReadingPlay.textContent = '▶️ Ascolta il testo';
         elements.btnReadingPause.disabled = true;
-        setReadingStatus('Leitura interrompida.');
+        setReadingStatus('Lettura interrotta.');
         return;
     }
 
     // Iniciar nova leitura - dividir texto em chunks para evitar bug de textos longos
     state.reading.isPlaying = true;
-    elements.btnReadingPlay.textContent = '⏹️ Parar';
+    elements.btnReadingPlay.textContent = '⏹️ Interrompi';
     elements.btnReadingPause.disabled = false;
 
     // Dividir texto em sentenças para evitar o bug de textos longos
-    const chunks = splitTextIntoChunks(state.reading.currentText.texto);
+    const readingText = state.reading.currentText.testoIt || state.reading.currentText.texto;
+    const chunks = splitTextIntoChunks(readingText);
     state.reading.chunks = chunks;
     state.reading.currentChunk = 0;
 
-    setReadingStatus('🔊 Lendo texto... Acompanhe em voz alta!');
+    setReadingStatus('🔊 Lettura in corso... Segui il testo ad alta voce!');
     elements.readingText.classList.add('reading-active');
 
     speakNextChunk();
@@ -997,10 +987,10 @@ function speakNextChunk() {
         // Leitura concluída
         state.reading.isPlaying = false;
         state.reading.isPaused = false;
-        elements.btnReadingPlay.textContent = '▶️ Ouvir Texto';
+        elements.btnReadingPlay.textContent = '▶️ Ascolta il testo';
         elements.btnReadingPause.disabled = true;
         elements.readingText.classList.remove('reading-active');
-        setReadingStatus('✅ Leitura concluída! Tente ler sozinho agora.');
+        setReadingStatus('✅ Lettura completata! Ora prova a leggere da solo.');
         return;
     }
 
@@ -1030,10 +1020,10 @@ function speakNextChunk() {
     utterance.onerror = (event) => {
         if (event.error !== 'interrupted') {
             state.reading.isPlaying = false;
-            elements.btnReadingPlay.textContent = '▶️ Ouvir Texto';
+            elements.btnReadingPlay.textContent = '▶️ Ascolta il testo';
             elements.btnReadingPause.disabled = true;
             elements.readingText.classList.remove('reading-active');
-            setReadingStatus('❌ Erro na leitura. Tente novamente.');
+            setReadingStatus('❌ Errore durante la lettura. Riprova.');
         }
     };
 
@@ -1047,15 +1037,15 @@ function togglePauseReading() {
       if (state.reading.isPaused) {
           // Retomar - reiniciar a partir do chunk atual (resume() não funciona bem)
           state.reading.isPaused = false;
-          elements.btnReadingPause.textContent = '⏸️ Pausar';
-          setReadingStatus('🔊 Continuando leitura...');
+          elements.btnReadingPause.textContent = '⏸️ Pausa';
+          setReadingStatus('🔊 Ripresa della lettura...');
           speakNextChunk();
       } else {
           // Pausar - cancelar e marcar como pausado
           speechSynthesis.cancel();
           state.reading.isPaused = true;
-          elements.btnReadingPause.textContent = '▶️ Continuar';
-          setReadingStatus('⏸️ Leitura pausada.');
+          elements.btnReadingPause.textContent = '▶️ Riprendi';
+          setReadingStatus('⏸️ Lettura in pausa.');
       }
   }
 
@@ -1075,10 +1065,10 @@ function toggleTranslation() {
 
     if (isVisible) {
         elements.readingTranslationBox.style.display = 'none';
-        elements.btnReadingTranslation.textContent = '🇧🇷 Tradução';
+        elements.btnReadingTranslation.textContent = '🇧🇷 Traduzione';
     } else {
         elements.readingTranslationBox.style.display = 'block';
-        elements.btnReadingTranslation.textContent = '🇧🇷 Ocultar';
+        elements.btnReadingTranslation.textContent = '🇧🇷 Nascondi';
     }
 }
 

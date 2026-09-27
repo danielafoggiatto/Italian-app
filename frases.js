@@ -10,7 +10,7 @@ const frases = [
     { pt: "Prazer em conhecê-lo", it: "Piacere di conoscerti" },
     { pt: "Meu nome é João", it: "Mi chiamo Giovanni" },
     { pt: "De onde você é?", it: "Di dove sei?" },
-    { pt: "Eu sou do Brasil", it: "Sono del Brasile" },
+    { pt: "Eu sou do Brasil", it: "Vengo dal Brasile" },
 
     // Frases do dia a dia
     { pt: "Que horas são?", it: "Che ore sono?" },
@@ -39,7 +39,7 @@ const frases = [
     { pt: "Eu sou alérgico a amendoim", it: "Sono allergico alle arachidi" },
 
     // Viagem
-    { pt: "Onde fica a estação de trem?", it: "Dov'è la stazione dei treni?" },
+    { pt: "Onde fica a estação de trem?", it: "Dov'è la stazione ferroviaria?" },
     { pt: "Preciso de um táxi", it: "Ho bisogno di un taxi" },
     { pt: "Quanto tempo leva para chegar?", it: "Quanto tempo ci vuole per arrivare?" },
     { pt: "Meu voo foi cancelado", it: "Il mio volo è stato cancellato" },
@@ -59,10 +59,10 @@ const frases = [
     { pt: "Eu esqueci meu guarda-chuva", it: "Ho dimenticato il mio ombrello" },
 
     // Tecnologia
-    { pt: "Meu celular está sem bateria", it: "Il mio cellulare è scarico" },
+    { pt: "Meu celular está sem bateria", it: "Ho il telefono scarico" },
     { pt: "Qual é a senha do wifi?", it: "Qual è la password del wifi?" },
     { pt: "O site não está funcionando", it: "Il sito non funziona" },
-    { pt: "Preciso carregar meu notebook", it: "Devo caricare il mio laptop" },
+    { pt: "Preciso carregar meu notebook", it: "Devo caricare il portatile" },
 
     // Sentimentos e opiniões
     { pt: "Eu estou muito cansado hoje", it: "Sono molto stanco oggi" },
@@ -86,7 +86,7 @@ const frases = [
     { pt: "Eu estou tentando melhorar meu italiano", it: "Sto cercando di migliorare il mio italiano" },
 
     // Compras
-    { pt: "Estou apenas olhando", it: "Sto solo guardando" },
+    { pt: "Estou apenas olhando", it: "Sto solo dando un'occhiata" },
     { pt: "Você tem isso em outro tamanho?", it: "Ce l'ha in un'altra taglia?" },
     { pt: "Posso pagar com cartão?", it: "Posso pagare con carta?" },
     { pt: "Isso está em promoção?", it: "Questo è in saldo?" },
@@ -127,7 +127,7 @@ const frases = [
     { pt: "Não é fácil", it: "Non è facile" },
     { pt: "Eu não estou interessado nisso", it: "Non sono interessato a questo" },
     { pt: "Faz sentido", it: "Ha senso" },
-    { pt: "Pode ser", it: "Forse" },
+    { pt: "Pode ser", it: "Può essere" },
     { pt: "Acho que sim", it: "Penso di sì" },
     { pt: "Acho que não", it: "Penso di no" },
     { pt: "Com certeza", it: "Sicuramente" },
@@ -139,7 +139,7 @@ const frases = [
     { pt: "Claro que não", it: "Certo che no" },
 
     // Expressões de sentimento
-    { pt: "Estou com preguiça", it: "Ho voglia di fare niente" },
+    { pt: "Estou com preguiça", it: "Non ho voglia di fare niente" },
     { pt: "Estou com fome", it: "Ho fame" },
     { pt: "Estou com sede", it: "Ho sete" },
     { pt: "Estou com sono", it: "Ho sonno" },
@@ -176,7 +176,7 @@ const frases = [
     { pt: "O que aconteceu?", it: "Cosa è successo?" },
     { pt: "Como assim?", it: "Cosa intendi?" },
     { pt: "Por quê?", it: "Perché?" },
-    { pt: "Pra quê?", it: "Per cosa?" },
+    { pt: "Para que serve isso?", it: "A cosa serve?" },
     { pt: "E aí?", it: "Come va?" },
     { pt: "Tudo bem?", it: "Tutto bene?" },
     { pt: "Você está bem?", it: "Stai bene?" },
@@ -197,7 +197,7 @@ const frases = [
     { pt: "Que difícil!", it: "Che difficile!" },
     { pt: "Incrível!", it: "Incredibile!" },
     { pt: "Sério?", it: "Davvero?" },
-    { pt: "Nossa!", it: "Wow!" },
+    { pt: "Nossa!", it: "Mamma mia!" },
     { pt: "Não acredito!", it: "Non ci credo!" },
     { pt: "Que absurdo!", it: "Che assurdo!" },
     { pt: "Isso é ridículo", it: "È ridicolo" },
@@ -205,7 +205,7 @@ const frases = [
 
     // Pedidos e respostas
     { pt: "Me dá um minuto", it: "Dammi un minuto" },
-    { pt: "Pode deixar", it: "Lascia fare a me" },
+    { pt: "Pode deixar", it: "Va bene, ci penso io" },
     { pt: "Deixa comigo", it: "Ci penso io" },
     { pt: "Não se preocupe", it: "Non ti preoccupare" },
     { pt: "Fica tranquilo", it: "Stai tranquillo" },
@@ -250,7 +250,7 @@ const frases = [
     { pt: "Nunca", it: "Mai" },
     { pt: "Quase nunca", it: "Quasi mai" },
     { pt: "Na maioria das vezes", it: "La maggior parte delle volte" },
-    { pt: "Toda hora", it: "Sempre" },
+    { pt: "Toda hora", it: "In continuazione" },
     { pt: "Agora mesmo", it: "Proprio adesso" },
     { pt: "Daqui a pouco", it: "Tra poco" },
     { pt: "Outro dia", it: "L'altro giorno" },
@@ -258,11 +258,11 @@ const frases = [
     { pt: "Mês que vem", it: "Il mese prossimo" },
 
     // Situações do dia a dia
-    { pt: "Perdi a hora", it: "Ho dormito troppo" },
+    { pt: "Perdi a hora", it: "Ho fatto tardi" },
     { pt: "O trânsito estava horrível", it: "Il traffico era terribile" },
     { pt: "Estou atrasado", it: "Sono in ritardo" },
     { pt: "Acabou a luz", it: "È andata via la luce" },
-    { pt: "A internet caiu", it: "Internet non funziona" },
+    { pt: "A internet caiu", it: "È saltata la connessione" },
     { pt: "Meu alarme não tocou", it: "La sveglia non è suonata" },
     { pt: "Esqueci em casa", it: "L'ho dimenticato a casa" },
     { pt: "Não deu tempo", it: "Non ho avuto tempo" },
@@ -285,7 +285,7 @@ const frases = [
     { pt: "Tô ligado", it: "Lo so" },
     { pt: "Beleza", it: "Va bene" },
     { pt: "Valeu", it: "Grazie" },
-    { pt: "Falou", it: "Ok allora" },
+    { pt: "Falou", it: "Ci sentiamo" },
     { pt: "Tá bom", it: "Va bene" },
     { pt: "Fechou", it: "Affare fatto" },
     { pt: "Partiu", it: "Andiamo" },
@@ -295,7 +295,60 @@ const frases = [
     { pt: "Meu Deus!", it: "Mio Dio!" },
     { pt: "Ai meu Deus!", it: "Oh mio Dio!" },
 
-    // ==========================================
+    // Vida cotidiana na Itália
+    { pt: "Bom dia", it: "Buongiorno" },
+    { pt: "Boa noite (ao chegar)", it: "Buonasera" },
+    { pt: "Boa noite, vou dormir", it: "Buonanotte, vado a dormire" },
+    { pt: "Com licença, posso passar?", it: "Permesso, posso passare?" },
+    { pt: "Moro aqui há pouco tempo", it: "Abito qui da poco" },
+
+    // Sobre aprender italiano
+    { pt: "Estou aprendendo a falar italiano", it: "Sto imparando a parlare italiano" },
+    { pt: "Ainda estou estudando italiano", it: "Sto ancora studiando italiano" },
+    { pt: "Não sei tudo, mas estou aprendendo", it: "Non so tutto, ma sto imparando" },
+    { pt: "Meu italiano ainda não é perfeito", it: "Il mio italiano non è ancora perfetto" },
+    { pt: "Entendo mais do que consigo falar", it: "Capisco più di quanto riesca a parlare" },
+    { pt: "Pode me corrigir se eu cometer um erro?", it: "Può correggermi se faccio un errore?" },
+    { pt: "Estou praticando italiano todos os dias", it: "Pratico l'italiano ogni giorno" },
+    { pt: "Ainda estou no começo", it: "Sono ancora all'inizio" },
+
+    { pt: "Ainda tenho dificuldade para falar", it: "Faccio ancora fatica a parlare" },
+    { pt: "Você pode falar mais devagar, por favor?", it: "Può parlare più lentamente, per favore?" },
+    { pt: "Desculpe, sabe me dizer onde fica a estação?", it: "Scusi, sa dirmi dov'è la stazione?" },
+    { pt: "Preciso fazer compras no mercado", it: "Devo fare la spesa" },
+    { pt: "Vou passar na farmácia", it: "Passo in farmacia" },
+    { pt: "Estou atrasado, chego em dez minutos", it: "Sono in ritardo, arrivo tra dieci minuti" },
+    { pt: "Você pode me mandar a localização?", it: "Mi mandi la posizione?" },
+
+    // Bar, restaurante e supermercado
+    { pt: "Um café no balcão, por favor", it: "Un caffè al banco, per favore" },
+    { pt: "Um cappuccino e um cornetto, por favor", it: "Un cappuccino e un cornetto, per favore" },
+    { pt: "Queria uma mesa para duas pessoas", it: "Vorrei un tavolo per due" },
+    { pt: "Vocês têm uma mesa livre?", it: "Avete un tavolo libero?" },
+    { pt: "O que você recomenda?", it: "Cosa mi consiglia?" },
+    { pt: "Vou querer este", it: "Prendo questo" },
+    { pt: "A conta, por favor", it: "Il conto, per favore" },
+    { pt: "O couvert está incluído?", it: "Il coperto è incluso?" },
+    { pt: "Vocês têm uma opção vegetariana?", it: "Avete un'opzione vegetariana?" },
+    { pt: "Vamos tomar um aperitivo?", it: "Ti va di fare un aperitivo?" },
+    { pt: "Onde encontro o leite?", it: "Dove trovo il latte?" },
+    { pt: "Pode me dar cem gramas de presunto cozido, por favor?", it: "Mi dà un etto di prosciutto cotto, per favore?" },
+    { pt: "Um saco, por favor", it: "Un sacchetto, per favore" },
+
+    // Transporte, moradia e serviços
+    { pt: "Um bilhete para Roma, por favor", it: "Un biglietto per Roma, per favore" },
+    { pt: "Este trem para em Florença?", it: "Questo treno ferma a Firenze?" },
+    { pt: "De qual plataforma sai o trem?", it: "Da quale binario parte il treno?" },
+    { pt: "Preciso validar o bilhete?", it: "Devo convalidare il biglietto?" },
+    { pt: "A que horas passa o próximo ônibus?", it: "A che ora passa il prossimo autobus?" },
+    { pt: "Estou procurando um apartamento para alugar", it: "Sto cercando un appartamento in affitto" },
+    { pt: "As despesas do condomínio estão incluídas?", it: "Le spese condominiali sono incluse?" },
+    { pt: "O aquecimento não está funcionando", it: "Non funziona il riscaldamento" },
+    { pt: "Como funciona a coleta seletiva aqui?", it: "Come funziona la raccolta differenziata qui?" },
+    { pt: "Preciso marcar uma consulta médica", it: "Devo fissare un appuntamento dal medico" },
+    { pt: "Quais documentos são necessários?", it: "Quali documenti servono?" },
+
+/*     // ==========================================
     // QA e Automação de Testes
     // ==========================================
 
@@ -517,5 +570,5 @@ const frases = [
     { pt: "As linhas do tempo estão se separando", it: "Le linee temporali si stanno separando" },
     { pt: "Estamos vivendo linhas do tempo simultâneas", it: "Stiamo vivendo linee temporali simultanee" },
     { pt: "O livre arbítrio é sagrado", it: "Il libero arbitrio è sacro" },
-    { pt: "Ninguém pode interferir no seu caminho", it: "Nessuno può interferire con il tuo cammino" }
+    { pt: "Ninguém pode interferir no seu caminho", it: "Nessuno può interferire con il tuo cammino" } */
 ];
